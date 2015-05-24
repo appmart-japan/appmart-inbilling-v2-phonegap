@@ -1,0 +1,19 @@
+{
+  "name": "appmart-plugin",
+  "version": "1.0",
+  "description": "appmart Inapp Billing (V2) Plugin",
+  "cordova": {
+    "id": "appmart-plugin",
+    "platforms": [
+      "android"
+    ]
+  },
+
+  "keywords": [
+    "appmart",
+    "android",
+    "inapp billing"
+  ],
+  "author": "johann canu",
+  "license": "Apache 2.0"
+}
