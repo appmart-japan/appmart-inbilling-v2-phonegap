@@ -1,10 +1,3 @@
-# appmart-plugin
+# appmartアプリ内課金V2: phonegap
 
-## インストール
-
-    cordova plugin add appmart-plugin
-
-
-## メッソード
-
-coming soon
+こちらをご参照ください。

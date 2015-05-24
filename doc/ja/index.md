@@ -1,4 +1,4 @@
-# appmartアプリ内課金 (V2): phonegapプラグイン
+# appmartアプリ内課金V2:phonegap
 
 
 このプラグインをご利用いただければ、簡単に[appmart](http://app-mart.jp)の[アプリ内課金V2](https://gist.github.com/info-appmart/1204bf0595e5fe7b6667)を実装することができます。 
@@ -43,10 +43,10 @@ libraryとしてプロジェクトを導入します：
 githubからインストール可能です。
 
 ```
-$ cordova plugin add https://git-wip-us.apache.org/repos/asf/cordova-plugin-device.git
+$ cordova plugin add https://github.com/appmart-japan/appmart-inbilling-v2-phonegap.git
 ```
     
-## 使い方
+## pluginの使い方
 
 
 
@@ -54,13 +54,13 @@ $ cordova plugin add https://git-wip-us.apache.org/repos/asf/cordova-plugin-devi
 
 html内にプラグインのjsファイルをインポートしてください。
 
-```
+```html
 <script type="text/javascript" src="appmart.js"></script>
 ```
 
  callbacksを用意し、**deviceready** イベントでプラグインの初期設定を行います。
 
-```
+```javascript
 //appmart plugin
 var mp ;
 
@@ -81,34 +81,26 @@ function onDeviceReady() {
 }
 ```
    
-> アプリIDとライセンスIDを反映してください。
+> アプリIDとライセンスIDを直してください。
 
 ##### start_setupのパラメータ
 
 | n  |参考               |
 |---|-------------------|
-| 1  | アプリID  |
-| 2  | ライセンスID| 
-| 3  | 成功時callback| 
-| 4  | 失敗時callback| 
+| 1  | アプリID (文字列)  |
+| 2  | ライセンスID (文字列)| 
+| 3  | 成功時callback (js関数)| 
+| 4  | 失敗時callback (js関数)| 
 
 
 #### Inventoryを取得
 
 **inventory**を取得することによってエンドユーザーの**購入履歴**と**サービス情報**を取得することができます。
 
-
-> html code
-
-
 ```html
 <button value="settlement" onclick="get_inv()" >Inventoryを取得</button>
 <div id="my_div"></div>
 ```
-
-
-
-> JS code
 
 ```javascript
 
@@ -158,11 +150,10 @@ var show_inv = function(inventory){
 
 }
 
-
 // Inventory情報を取得
 function get_inv(){
     if (mp != null){
-        mp.query_inventory_async("test,longtestestteeeeeeeeeeeeeeeeee", show_inv, callback_alert);
+        mp.query_inventory_async("my_service_1,my_service_2", show_inv, callback_alert);
     }else{
         console.log("appmart pluginが設定されておりません。");
     }
@@ -174,9 +165,9 @@ function get_inv(){
 
 | n  |参考               |
 |---|-------------------|
-| 1  | 取得するサービスのID([,]区切り)  | 
-| 2  | 成功時callback| 
-| 3  | 失敗時callback| 
+| 1  | 取得するサービスのID(文字列、[,]区切り)  | 
+| 2  | 成功時callback (JS関数)| 
+| 3  | 失敗時callback (JS関数)| 
 
 ##### inventoryのJSON情報
 
@@ -212,10 +203,10 @@ function purchase(sku_id, payload){
 
 | n  |参考               |
 |---|-------------------|
-| 1  | 購入希望のサービスID  | 
-| 2  |  デベロッパーに追加される文字列(任意) | 
-| 3  | 成功時callback| 
-| 4  | 失敗時callback| 
+| 1  | 購入希望のサービスID （文字列）  | 
+| 2  |  デベロッパーに追加される文字列 (文字列、任意) | 
+| 3  | 成功時callback （JS関数）| 
+| 4  | 失敗時callback （JS関数）| 
 
 
 #### サービス消費
@@ -237,6 +228,6 @@ function consume(sku_id){
 
 | n  |参考               |
 |---|-------------------|
-| 1  | 消費するサービスのID | 
-| 2  | 成功時callback| 
-| 3  | 失敗時callback| 
+| 1  | 消費するサービスのID （文字列） | 
+| 2  | 成功時callback （JS関数）| 
+| 3  | 失敗時callback （JS関数）| 
