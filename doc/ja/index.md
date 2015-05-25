@@ -1,4 +1,4 @@
-# appmartアプリ内課金V2:phonegap
+# appmartアプリ内課金V2: phonegap
 
 
 このプラグインをご利用いただければ、簡単に[appmart](http://app-mart.jp)の[アプリ内課金V2](https://gist.github.com/info-appmart/1204bf0595e5fe7b6667)を実装することができます。 
@@ -6,7 +6,7 @@
 ## APPMARTアプリ内課金V2を導入
 
 
-先ずは[githubプロジェクト](https://github.com/appmart-japan/appmart-inbilling-v2-library)をローカルでcloneしてください。
+先ずは[githubプロジェクト](https://github.com/appmart-japan/appmart-inbilling-v2-library)をローカルにcloneしてください。
 
 ```shell
 cd /home/user/your_directory
@@ -20,7 +20,7 @@ androidプロジェクトとしてworkspaceに導入します：
 +  File
 +  Import
 +  Existing Android Code Into Workspace
-+  先ほどcloneしたプロジェクトを選択
++  先ほどcloneしたプロジェクトを選択します。
 
 > **注意点**　Eclipseにうまく読み込まれないために、workspace以外のフォルダーにcloneしてください。
 
@@ -85,12 +85,12 @@ function onDeviceReady() {
 
 ##### start_setupのパラメータ
 
-| n  |参考               |
-|---|-------------------|
-| 1  | アプリID (文字列)  |
-| 2  | ライセンスID (文字列)| 
-| 3  | 成功時callback (js関数)| 
-| 4  | 失敗時callback (js関数)| 
+| n  | 型 |参考               |
+|---|---|-------------------|
+| 1  |文字列| アプリID  |
+| 2  |文字列| ライセンスID| 
+| 3  |関数| 成功時callback| 
+| 4  |関数| 失敗時callback | 
 
 
 #### Inventoryを取得
@@ -184,6 +184,7 @@ function get_inv(){
 }
 ```
 
+> [skuDetails]と[purchases]配列のデータがJSON形式の文字列となっておりますのでご注意ください。
 
 #### サービスを購入
 
@@ -201,13 +202,14 @@ function purchase(sku_id, payload){
 }
 ```
 
-| n  |参考               |
-|---|-------------------|
-| 1  | 購入希望のサービスID （文字列）  | 
-| 2  |  デベロッパーに追加される文字列 (文字列、任意) | 
-| 3  | 成功時callback （JS関数）| 
-| 4  | 失敗時callback （JS関数）| 
+| n |  型  |                 参考                 |
+|---|------|--------------------------------------|
+| 1 |文字列|         購入希望のサービスID         | 
+| 2 |文字列|デベロッパーに追加される文字列 (任意) | 
+| 3 | 関数 |            成功時callback            | 
+| 4 | 関数 |            失敗時callback            | 
 
+> サービスを購入した後にはInventoryを更新するためにもう一度query_inventory_asyncを実行してください。
 
 #### サービス消費
 
@@ -226,8 +228,10 @@ function consume(sku_id){
 }
 ```
 
-| n  |参考               |
-|---|-------------------|
-| 1  | 消費するサービスのID （文字列） | 
-| 2  | 成功時callback （JS関数）| 
-| 3  | 失敗時callback （JS関数）| 
+| n  |型|参考  |
+|-------|----|--------------|
+| 1  |文字列| 消費するサービスのID| 
+| 2 |関数 | 成功時callback| 
+| 3  |関数 | 失敗時callback| 
+
+> サービスを消費した後にはInventoryを更新するためにもう一度query_inventory_asyncを実行してください。
